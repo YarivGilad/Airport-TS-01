@@ -1,14 +1,12 @@
 import log from '@ajar/marker';
-import {Alian} from './space.js';
+import { FlightsTower } from './flight-tower.js';
 
-const { TODAY } = process.env;
 
-let msg: string = "hello";
-
-function saySomething(something:string):void{
-    log.yellow('today\'s message is:',something); 
-    const ET = new Alian();
-    log.magenta('today is:',TODAY); 
-}
-
-saySomething(msg);
+const tower = new FlightsTower();
+// 
+//tower.createFlights();
+// tower.departAllFlights();
+tower.on(FlightsTower.DATA_READY,()=> { 
+    tower.createFlights();
+    tower.departAllFlights();
+})
